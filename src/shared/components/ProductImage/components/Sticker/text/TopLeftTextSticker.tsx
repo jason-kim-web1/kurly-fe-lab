@@ -33,7 +33,6 @@ export const TopLeftTextSticker = ({ sticker }: Props) => {
   if (!firstContent) {
     return null;
   }
-  console.log(fontStyle);
   const { text, fontColorCode, opacity } = firstContent;
   const backgroundColor = hexToRgba(backgroundColorCode, backgroundOpacity);
   const color = hexToRgba(fontColorCode, opacity);

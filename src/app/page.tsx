@@ -3,7 +3,7 @@
 import { CollectionSectionProductCard } from '@productCard/index';
 
 import { Container } from './styles';
-import products from 'mdChoiceProducts';
+import products from './products';
 
 export default function Page() {
   return (

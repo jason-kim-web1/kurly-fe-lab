@@ -6,7 +6,6 @@ export const hexToRgba = (hexCode: string, alpha = 1) => {
       .map((hex) => parseInt(hex, 16));
     return `rgba(${r},${g},${b},${alpha})`;
   } catch (error: any) {
-    console.log(error);
     return `rgba()`;
   }
 };
