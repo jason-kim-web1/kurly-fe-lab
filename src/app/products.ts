@@ -1,4 +1,4 @@
-import { CardProduct } from "../components/ProductCard";
+import { CardProduct } from '@productCard/components/ProductCardBase';
 
 const products: CardProduct[] = [
   {

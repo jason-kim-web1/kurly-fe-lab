@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { ImageSticker } from '@shared/types/sticker';
+import { ImageSticker } from '@productCard/types/sticker';
 import { AspectRatio } from '../../../../AspectRatio';
 import NextImage from '../../../../NextImage';
 import { useProductImageBase } from '../../../ProductImageBase';

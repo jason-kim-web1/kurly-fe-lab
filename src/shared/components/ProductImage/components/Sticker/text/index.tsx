@@ -1,5 +1,5 @@
-import type { TextSticker } from '@shared/types/sticker';
-import { isBottomCenterTextSticker, isTopLeftTextSticker } from '@shared/utils/sticker';
+import type { TextSticker } from '@productCard/types/sticker';
+import { isBottomCenterTextSticker, isTopLeftTextSticker } from '@productCard/utils/sticker';
 import { BottomCenterTextSticker } from './BottomCenterTextSticker';
 import { TopLeftTextSticker } from './TopLeftTextSticker';
 

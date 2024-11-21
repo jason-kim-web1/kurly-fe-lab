@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import { eq } from 'lodash';
 
-import COLOR from '../../../../constants/colorset';
-import { isNotEmpty } from '@shared/utils/lodash-extends';
+import COLOR from '../../../../../components/ProductCard/constants/colorset';
+import { isNotEmpty } from '@productCard/utils/lodash-extends';
 import { Platform } from '../../constants';
 import { useProductImageBase } from '../../ProductImageBase';
 

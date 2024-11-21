@@ -3,8 +3,8 @@ import { isEmpty, isFunction } from 'lodash';
 import Image, { ImageProps } from 'next/legacy/image';
 import { SyntheticEvent, useEffect, useState } from 'react';
 
-import { NoMainImageLogo } from '@shared/images';
-import imageLoader from '@shared/utils/image-loader';
+import { NoMainImageLogo } from '@productCard/constants/images';
+import imageLoader from '@productCard/utils/image-loader';
 import styled from '@emotion/styled';
 
 const imageDisSelectStyle = css`

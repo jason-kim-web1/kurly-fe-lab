@@ -1,5 +1,5 @@
-import type { Sticker as StickerType } from '@shared/types/sticker';
-import { isImageSticker, isTextSticker } from '@shared/utils/sticker';
+import type { Sticker as StickerType } from '@productCard/types/sticker';
+import { isImageSticker, isTextSticker } from '@productCard/utils/sticker';
 import { ImageTypeSticker } from './image';
 import { TextTypeSticker } from './text';
 

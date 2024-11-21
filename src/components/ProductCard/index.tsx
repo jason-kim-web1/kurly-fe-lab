@@ -3,7 +3,7 @@
 import { css } from '@emotion/css';
 import clsx from 'clsx';
 
-import { ProductCardBase, ProductCardBaseProps } from '@productCard/ProductCardBase';
+import { ProductCardBase, ProductCardBaseProps } from './components/ProductCardBase';
 import { ProductImageType } from '@shared/components/ProductImage/constants';
 
 const flexRowStyle = css`
@@ -113,6 +113,6 @@ const SpecialDealProductCard = (props: ProductCardBaseProps) => (
   </ProductCardBase.Root>
 );
 
-export * from '@productCard/ProductCardBase';
+export * from './components/ProductCardBase/Impression';
 
 export { CollectionSectionProductCard, MdChoiceProductCard, SpecialDealProductCard };

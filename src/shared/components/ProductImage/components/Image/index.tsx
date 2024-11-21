@@ -7,7 +7,7 @@ import { useProductImageBase } from '../../ProductImageBase';
 import type { ChildrenOnly } from '../../types';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
-import { isPC } from '@shared/utils/getDevice';
+import { isPC } from '@productCard/utils/getDevice';
 
 const rootStyle = css`
   &:hover {
