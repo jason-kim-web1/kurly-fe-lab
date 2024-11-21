@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import { eq } from 'lodash';
 
-import NextImage from '../../../NextImage';
+import NextImage from '../NextImage';
 import { ProductImageType } from '../../constants';
 import { useProductImageBase } from '../../ProductImageBase';
 import type { ChildrenOnly } from '../../types';

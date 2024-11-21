@@ -4,7 +4,7 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 
 import { ProductCardBase, ProductCardBaseProps } from './components/ProductCardBase';
-import { ProductImageType } from '@shared/components/ProductImage/constants';
+import { ProductImageType } from '@productCard/components/ProductImage/constants';
 
 const flexRowStyle = css`
   display: flex;

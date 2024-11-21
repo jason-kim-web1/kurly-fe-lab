@@ -1,6 +1,6 @@
 import { useProductCardBase } from '../ProductCardBase';
-import { ProductImage } from '@shared/components/ProductImage';
-import { ProductImageType } from '@shared/components/ProductImage/constants';
+import { ProductImage } from '@productCard/components/ProductImage';
+import { ProductImageType } from '@productCard/components/ProductImage/constants';
 import { transformSnakeCaseStickerList } from '@productCard/utils/sticker';
 import { SnakeCaseStickerList } from '@productCard/types/sticker';
 
