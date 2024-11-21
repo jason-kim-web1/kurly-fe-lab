@@ -2,17 +2,13 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-import { CustomStylingProps } from '@shared/type';
-import { PRICE_UNIT } from '@shared/constants';
+import { CustomStylingProps } from '@productCard/types';
+import { PRICE_UNIT } from '@productCard/constants';
 import { useProductCardBase } from '@productCard/ProductCardBase';
 import COLOR from '@shared/constants/colorset';
 import { addComma } from '@shared/services/formatter.service';
 
 type Ref = HTMLParagraphElement;
-
-type DiscountedPriceImplProps = CustomStylingProps & {
-  price: number;
-};
 
 const rootStyle = css`
   color: ${COLOR.kurlyGray450};
@@ -23,21 +19,17 @@ const rootStyle = css`
   text-decoration: line-through;
 `;
 
-const DiscountedPriceImpl = forwardRef<Ref, DiscountedPriceImplProps>(({ price, className, style }, ref) => (
-  <span ref={ref} className={clsx(rootStyle, className)} style={style}>{`${addComma(price)}${PRICE_UNIT}`}</span>
-));
+const DiscountedPrice = forwardRef<Ref, CustomStylingProps>(({ style, className }, ref) => {
+  const { product } = useProductCardBase();
+  const { salesPrice, discountedPrice, discountRate } = product;
 
-const DiscountedPrice = ({ style, className }: CustomStylingProps) => {
-  const {
-    product: { salesPrice, discountedPrice, discountRate },
-  } = useProductCardBase();
-  if (!salesPrice || discountRate <= 0 || !discountedPrice) {
-    return null;
-  }
-  return <DiscountedPriceImpl className={className} price={salesPrice} style={style} />;
-};
+  if (!salesPrice || discountRate <= 0 || !discountedPrice) return null;
 
-DiscountedPriceImpl.displayName = 'DiscountedPriceImpl';
+  return (
+    <span ref={ref} className={clsx(rootStyle, className)} style={style}>{`${addComma(salesPrice)}${PRICE_UNIT}`}</span>
+  );
+});
+
 DiscountedPrice.displayName = 'DiscountedPrice';
 
 export { DiscountedPrice };

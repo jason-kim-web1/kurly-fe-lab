@@ -148,7 +148,7 @@ const products: CardProduct[] = [
     stickers: [],
     description: "와인",
     shortCutType: "cart",
-    isSoldOut: false,
+    isSoldOut: true,
     soldOutTitle: "Coming Soon",
     soldOutText: "",
     isMultiplePrice: true,

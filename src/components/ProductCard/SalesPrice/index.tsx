@@ -2,18 +2,13 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-import { CustomStylingProps } from '@shared/type';
-import { PRICE_UNIT } from '@shared/constants';
+import { CustomStylingProps } from '@productCard/types';
 import { useProductCardBase } from '@productCard/ProductCardBase';
 import COLOR from '@shared/constants/colorset';
 import { addComma } from '@shared/services/formatter.service';
+import { PRICE_UNIT } from '@productCard/constants';
 
 type Ref = HTMLSpanElement;
-
-type SalesPriceImplProps = CustomStylingProps & {
-  isMultiplePrice: boolean;
-  price: number;
-};
 
 const rootStyle = css`
   color: ${COLOR.kurlyGray800};
@@ -24,31 +19,19 @@ const rootStyle = css`
   letter-spacing: -0.5px;
 `;
 
-const SalesPriceImpl = forwardRef<Ref, SalesPriceImplProps>(({ isMultiplePrice, price, className, style }, ref) => (
-  <span ref={ref} className={clsx(rootStyle, className)} style={style}>{`${addComma(price)}${PRICE_UNIT}${
-    isMultiplePrice ? '~' : ''
-  }`}</span>
-));
-
 const SalesPrice = forwardRef<Ref, CustomStylingProps>(({ className, style }, ref) => {
-  const {
-    product: { discountedPrice, salesPrice, isMultiplePrice },
-  } = useProductCardBase();
-  if (!salesPrice) {
-    return null;
-  }
+  const { product } = useProductCardBase();
+  const { discountedPrice, salesPrice, isMultiplePrice } = product;
+
+  if (!salesPrice) return null;
+
   return (
-    <SalesPriceImpl
-      ref={ref}
-      isMultiplePrice={isMultiplePrice}
-      price={discountedPrice || salesPrice}
-      className={className}
-      style={style}
-    />
+    <span ref={ref} className={clsx(rootStyle, className)} style={style}>
+      {`${addComma(discountedPrice || salesPrice)}${PRICE_UNIT}${isMultiplePrice ? '~' : ''}`}
+    </span>
   );
 });
 
-SalesPriceImpl.displayName = 'SalesPriceImpl';
 SalesPrice.displayName = 'SalesPrice';
 
 export { SalesPrice };

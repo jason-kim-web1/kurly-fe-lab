@@ -2,12 +2,12 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { CSSProperties, forwardRef, PropsWithChildren } from 'react';
 
+type Ref = HTMLDivElement;
+
 type BoxProps = PropsWithChildren<{
   style?: CSSProperties;
   className?: string | undefined;
 }>;
-
-type Ref = HTMLDivElement;
 
 const rootStyle = css`
   &:empty {

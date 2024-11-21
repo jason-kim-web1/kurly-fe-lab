@@ -3,19 +3,13 @@ import clsx from 'clsx';
 import { isFunction } from 'lodash';
 import { forwardRef, MouseEventHandler } from 'react';
 
-import { CustomStylingProps } from '@shared/type';
+import { CustomStylingProps } from '@productCard/types';
 import { useProductCardBase } from '@productCard/ProductCardBase';
-import { ShortCutType, ShortCutTypeEnum } from '@shared/lib/ShortCut';
 import { Buy } from '@shared/components/icons/Buy';
 import { Cart } from '@shared/components/icons/Cart';
 import COLOR from '@shared/constants/colorset';
 
 type Ref = HTMLButtonElement;
-
-type ShortCutImplProps = CustomStylingProps & {
-  shortCutType: ShortCutType;
-  onClickShortCut: MouseEventHandler<HTMLButtonElement>;
-};
 
 const rootStyle = css`
   width: 100%;
@@ -39,79 +33,47 @@ const labelStyle = css`
   line-height: 20px;
 `;
 
-const ShortCutTypeMap = new Map([
-  [
-    ShortCutTypeEnum.enum.cart,
-    {
-      label: '담기',
-      icon: <Cart width={18} height={18} />,
-    },
-  ],
-  [
-    ShortCutTypeEnum.enum.detail,
-    {
-      label: '상세보기',
-      icon: null,
-    },
-  ],
-  [
-    ShortCutTypeEnum.enum.purchase,
-    {
-      label: '바로구매',
-      icon: <Buy width={18} height={18} />,
-    },
-  ],
-  [
-    ShortCutTypeEnum.enum.restock_notification,
-    {
-      label: '재입고알림',
-      icon: <Cart width={18} height={18} />,
-    },
-  ],
-]);
-
-const ShortCutImpl = forwardRef<Ref, ShortCutImplProps>(({ shortCutType, onClickShortCut, className, style }, ref) => {
-  const target = ShortCutTypeMap.get(shortCutType);
-  if (!target) {
-    return null;
+const ShortCutTypeMap = {
+  cart: {
+    label: '담기',
+    icon: <Cart width={18} height={18} />,
+  },
+  detail: {
+    label: '상세보기',
+    icon: null,
+  },
+  purchase: {
+    label: '바로구매',
+    icon: <Buy width={18} height={18} />,
+  },
+  restock_notification: {
+    label: '재입고알림',
+    icon: <Cart width={18} height={18} />,
   }
+}
+
+const ShortCut = forwardRef<Ref, CustomStylingProps>(({ className, style }, ref) => {
+  const { product, onClickShortCut } = useProductCardBase();
+  const { shortCutType } = product;
+  if (!shortCutType) return null;
+  const target = ShortCutTypeMap[shortCutType];
+  if (!target) return null;
+  
   const { icon, label } = target;
+  const handleClickShortCut: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFunction(onClickShortCut)) onClickShortCut(product, shortCutType);
+  };
+
   return (
-    <button ref={ref} type="button" onClick={onClickShortCut} className={clsx(rootStyle, className)} style={style}>
+    <button ref={ref} type="button" onClick={handleClickShortCut} className={clsx(rootStyle, className)} style={style}>
       {icon}
       <span className={labelStyle}>{label}</span>
     </button>
   );
 });
 
-const ShortCut = forwardRef<Ref, CustomStylingProps>(({ className, style }, ref) => {
-  const { product, onClickShortCut } = useProductCardBase();
-  const { shortCutType } = product;
-
-  const handleClickShortCut: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!isFunction(onClickShortCut)) {
-      return;
-    }
-    onClickShortCut(product, shortCutType);
-  };
-
-  if (!shortCutType) {
-    return null;
-  }
-  return (
-    <ShortCutImpl
-      ref={ref}
-      className={className}
-      shortCutType={shortCutType}
-      onClickShortCut={handleClickShortCut}
-      style={style}
-    />
-  );
-});
-
-ShortCutImpl.displayName = 'ShortCutImpl';
 ShortCut.displayName = 'ShortCut';
 
 export { ShortCut };

@@ -2,14 +2,13 @@ import { isFunction } from 'lodash';
 import { createContext, forwardRef, PropsWithChildren, useContext } from 'react';
 
 import { Impression } from '@features/recommendation-section/components/Impression';
-import type { ShortCutType } from 'shared/lib/ShortCut';
 import type { StickerList } from 'shared/lib/Sticker';
 import { Box } from '@productCard/Box';
 import { Description } from '@productCard/Description';
 import { DiscountedPrice } from '@productCard/DiscountedPrice';
 import { DiscountRate } from '@productCard/DiscountRate';
 import { Image } from '@productCard/Image';
-import { Link } from '@productCard/Link';
+import { ProductLink } from '@productCard/Link';
 import { Name } from '@productCard/Name';
 import { QuantityChip } from '@productCard/QuantityChip';
 import { ReviewCount } from '@productCard/ReviewCount';
@@ -17,6 +16,7 @@ import { SalesPrice } from '@productCard/SalesPrice';
 import { ShortCut } from '@productCard/ShortCut';
 
 import { ProductContainer } from 'app/styles';
+import type { ShortCutType } from '@productCard/types';
 
 type CardProduct = {
   id: string;
@@ -90,7 +90,7 @@ const ProductCardBase = {
   SalesPrice,
   DiscountRate,
   DiscountedPrice,
-  Link,
+  ProductLink,
   Box,
   QuantityChip,
 };

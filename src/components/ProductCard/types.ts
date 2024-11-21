@@ -1,8 +1,8 @@
 import type { CSSProperties } from 'react';
 
-type CustomStylingProps = {
+export type CustomStylingProps = {
   style?: CSSProperties | undefined;
   className?: string | undefined;
 };
 
-export type { CustomStylingProps };
+export type ShortCutType = 'cart' | 'purchase' | 'detail' | 'restock_notification';

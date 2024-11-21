@@ -17,7 +17,7 @@ const alignCenterStyle = css`
 
 const CollectionSectionProductCard = (props: ProductCardBaseProps) => (
   <ProductCardBase.Root {...props}>
-    <ProductCardBase.Link>
+    <ProductCardBase.ProductLink>
       <ProductCardBase.Box style={{ marginBottom: '6px' }}>
         <ProductCardBase.Image type={ProductImageType.MAIN_PRODUCT_LIST_ITEM} />
       </ProductCardBase.Box>
@@ -40,13 +40,13 @@ const CollectionSectionProductCard = (props: ProductCardBaseProps) => (
       <ProductCardBase.Box style={{ marginTop: '8px' }}>
         <ProductCardBase.ReviewCount />
       </ProductCardBase.Box>
-    </ProductCardBase.Link>
+    </ProductCardBase.ProductLink>
   </ProductCardBase.Root>
 );
 
 const MdChoiceProductCard = (props: ProductCardBaseProps) => (
   <ProductCardBase.Root {...props}>
-    <ProductCardBase.Link>
+    <ProductCardBase.ProductLink>
       <ProductCardBase.Box style={{ marginBottom: '6px' }}>
         <ProductCardBase.Image type={ProductImageType.MAIN_MD_CHOICE_ITEM} />
       </ProductCardBase.Box>
@@ -68,13 +68,13 @@ const MdChoiceProductCard = (props: ProductCardBaseProps) => (
         <ProductCardBase.DiscountRate />
         <ProductCardBase.SalesPrice />
       </ProductCardBase.Box>
-    </ProductCardBase.Link>
+    </ProductCardBase.ProductLink>
   </ProductCardBase.Root>
 );
 
 const SpecialDealProductCard = (props: ProductCardBaseProps) => (
   <ProductCardBase.Root {...props}>
-    <ProductCardBase.Link>
+    <ProductCardBase.ProductLink>
       <ProductCardBase.Box style={{ marginBottom: '6px' }}>
         <ProductCardBase.Image type={ProductImageType.MAIN_SPECIAL_DEAL_ITEM} />
       </ProductCardBase.Box>
@@ -109,7 +109,7 @@ const SpecialDealProductCard = (props: ProductCardBaseProps) => (
       <ProductCardBase.Box style={{ marginTop: '8px' }}>
         <ProductCardBase.ReviewCount />
       </ProductCardBase.Box>
-    </ProductCardBase.Link>
+    </ProductCardBase.ProductLink>
   </ProductCardBase.Root>
 );
 

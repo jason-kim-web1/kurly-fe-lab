@@ -2,16 +2,12 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-import { CustomStylingProps } from '@shared/type';
+import { CustomStylingProps } from '@productCard/types';
 import { useProductCardBase } from '@productCard/ProductCardBase';
 import COLOR from '@shared/constants/colorset';
 import { multiMaxLineText } from '@shared/utils/text-formatter';
 
 type Ref = HTMLHeadingElement;
-
-type NameImplProps = CustomStylingProps & {
-  name: string;
-};
 
 const rootStyle = css`
   color: ${COLOR.kurlyGray800};
@@ -22,23 +18,18 @@ const rootStyle = css`
   ${multiMaxLineText(2)};
 `;
 
-const NameImpl = forwardRef<Ref, NameImplProps>(({ name, className, style }, ref) => (
-  <h4 ref={ref} className={clsx(rootStyle, className)} style={style}>
-    {name}
-  </h4>
-));
-
 const Name = forwardRef<Ref, CustomStylingProps>(({ className, style }, ref) => {
-  const {
-    product: { name },
-  } = useProductCardBase();
-  if (!name) {
-    return null;
-  }
-  return <NameImpl ref={ref} name={name} className={className} style={style} />;
+  const { product } = useProductCardBase();
+  const { name } = product;
+
+  if (!name) return null;
+  return (
+    <h4 ref={ref} className={clsx(rootStyle, className)} style={style}>
+      {name}
+    </h4>
+  );
 });
 
-NameImpl.displayName = 'NameImpl';
 Name.displayName = 'Name';
 
 export { Name };
