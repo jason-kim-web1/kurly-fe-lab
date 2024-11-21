@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { isFunction } from 'lodash';
 import { forwardRef, MouseEventHandler, PropsWithChildren } from 'react';
 
 import { CustomStylingProps } from '@productCard/types/common';
 import { useProductCardBase } from '../ProductCardBase';
 import NextLink from './NextLink';
+import { isNotFunction } from '@productCard/utils/lodash-extends';
 
 type Ref = HTMLAnchorElement;
 
@@ -28,7 +28,7 @@ const Link = forwardRef<Ref, PropsWithChildren<CustomStylingProps>>(({ children,
   const { productCode } = product;
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = () => {
-    if (!isFunction(onClick)) {
+    if (isNotFunction(onClick)) {
       return;
     }
     onClick(product);

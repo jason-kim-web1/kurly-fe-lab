@@ -1,4 +1,3 @@
-import { isFunction } from 'lodash';
 import { createContext, forwardRef, PropsWithChildren, useContext } from 'react';
 
 import { Impression } from './Impression';
@@ -17,6 +16,7 @@ import { SalesPrice } from '@productCard/components/SalesPrice';
 import { ShortCut } from '@productCard/components/ShortCut';
 
 import { ProductContainer } from 'app/styles';
+import { isNotFunction } from '@productCard/utils/lodash-extends';
 
 type CardProduct = {
   id: string;
@@ -66,7 +66,7 @@ type ProductCardBaseProps = PropsWithChildren<BaseContext>;
 const ProductCardBaseImpl = forwardRef<Ref, ProductCardBaseProps>(({ children, ...other }, ref) => {
   const { onVisibleStateChange, product } = other;
   const handleVisible = (visible: boolean) => {
-    if (!isFunction(onVisibleStateChange)) {
+    if (isNotFunction(onVisibleStateChange)) {
       return;
     }
     onVisibleStateChange(product, visible);

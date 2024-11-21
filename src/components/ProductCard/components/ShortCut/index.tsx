@@ -1,6 +1,5 @@
 import { css } from '@emotion/css';
 import clsx from 'clsx';
-import { isFunction } from 'lodash';
 import { forwardRef, MouseEventHandler } from 'react';
 
 import { CustomStylingProps } from '@productCard/types/common';
@@ -9,6 +8,7 @@ import { ShortCutType, ShortCutTypeEnum } from '@productCard/types/shortcut';
 import { Buy } from '@productCard/icons/Buy';
 import { Cart } from '@productCard/icons/Cart';
 import COLOR from '@productCard/constants/colorset';
+import { isNotFunction } from '@productCard/utils/lodash-extends';
 
 type Ref = HTMLButtonElement;
 
@@ -91,7 +91,7 @@ const ShortCut = forwardRef<Ref, CustomStylingProps>(({ className, style }, ref)
   const handleClickShortCut: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!isFunction(onClickShortCut)) {
+    if (isNotFunction(onClickShortCut)) {
       return;
     }
     onClickShortCut(product, shortCutType);

@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
-import { isEmpty, isFunction } from 'lodash';
+import { isEmpty } from 'lodash';
 import Image, { ImageProps } from 'next/legacy/image';
 import { SyntheticEvent, useEffect, useState } from 'react';
 
-import { NoMainImageLogo } from '@productCard/constants/images';
-import imageLoader from '@productCard/utils/image-loader';
+import { NoMainImageLogo } from '@productCard/assets/img/images';
 import styled from '@emotion/styled';
+import { isNotFunction } from '@productCard/utils/lodash-extends';
 
 const imageDisSelectStyle = css`
   user-select: none;
@@ -35,7 +35,7 @@ const NextImage = ({
   const [internalSrc, setInternalSrc] = useState(src);
   const handleErrorCapture = (event: SyntheticEvent<HTMLImageElement>) => {
     setInternalSrc(fallbackImageSrc);
-    if (!isFunction(onError)) {
+    if (isNotFunction(onError)) {
       return;
     }
     onError(event);
@@ -57,7 +57,7 @@ const NextImage = ({
     <StyledImage
       {...otherProps}
       src={internalSrc}
-      loader={imageLoader}
+      loader={({ src }) => src}
       css={disableImageDrag ? imageDisSelectStyle : {}}
       onErrorCapture={handleErrorCapture}
     />

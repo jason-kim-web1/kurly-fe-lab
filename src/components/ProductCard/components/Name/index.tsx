@@ -5,7 +5,6 @@ import { forwardRef } from 'react';
 import { CustomStylingProps } from '@productCard/types/common';
 import { useProductCardBase } from '../ProductCardBase';
 import COLOR from '@productCard/constants/colorset';
-import { multiMaxLineText } from '@productCard/utils/text-formatter';
 
 type Ref = HTMLHeadingElement;
 
@@ -19,7 +18,12 @@ const rootStyle = css`
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  ${multiMaxLineText(2)};
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 const NameImpl = forwardRef<Ref, NameImplProps>(({ name, className, style }, ref) => (
