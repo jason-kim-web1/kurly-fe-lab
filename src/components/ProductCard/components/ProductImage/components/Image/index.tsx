@@ -2,12 +2,11 @@ import { css } from '@emotion/css';
 import { eq } from 'lodash';
 
 import NextImage from '../NextImage';
-import { ProductImageType } from '../../constants';
+import { Platform, ProductImageType } from '../../constants';
 import { useProductImageBase } from '../../ProductImageBase';
 import type { ChildrenOnly } from '../../types';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
-import { isPC } from '@productCard/utils/getDevice';
 
 const rootStyle = css`
   &:hover {
@@ -24,19 +23,19 @@ const AspectRatio = styled.div`
   overflow: hidden;
 `;
 
-const getBorderRadiusStyle = (isProductDetail: boolean) => {
+const getBorderRadiusStyle = (isProductDetail: boolean, platform: Platform) => {
   if (!isProductDetail) return '4px';
-  return isPC ? '6px' : '0px';
+  return platform === Platform.DESKTOP ? '6px' : '0px';
 };
 
 export const Image = ({ children }: ChildrenOnly) => {
-  const { src, imageMetaData, type } = useProductImageBase();
+  const { src, imageMetaData, type, platform } = useProductImageBase();
   const isProductDetail = eq(type, ProductImageType.PRODUCT_DETAIL);
   const styleClass = clsx(isProductDetail ? null : rootStyle);
   const { width, height } = imageMetaData;
   const style = {
     paddingBottom: `${100 / (width / height)}%`,
-    borderRadius: getBorderRadiusStyle(isProductDetail),
+    borderRadius: getBorderRadiusStyle(isProductDetail, platform),
   };
 
   return (

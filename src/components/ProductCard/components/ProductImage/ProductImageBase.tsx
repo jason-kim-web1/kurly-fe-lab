@@ -1,7 +1,7 @@
-import { eq, get, isEmpty } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { createContext, PropsWithChildren, useContext } from 'react';
+import { isDesktop as isPC } from 'react-device-detect';
 
-import { isPC } from '@productCard/utils/getDevice';
 import type { StickerList as StickerListType } from '@productCard/types/sticker';
 import { Image } from './components/Image';
 import { SoldOut } from './components/SoldOut';
@@ -11,13 +11,8 @@ import type { ProductImageMetaData } from './types';
 
 const getProductImageMetaData = (platform: Platform, type: ProductImageType): ProductImageMetaData => {
   const metaData = get(get(ProductImageMetaDataDictionary, type), platform);
-  const isDesktop = eq(type, Platform.DESKTOP);
-  if (!metaData) {
-    return isDesktop
-      ? ProductImageMetaDataDictionary[ProductImageType.PRODUCT_LIST_ITEM][Platform.DESKTOP]
-      : ProductImageMetaDataDictionary[ProductImageType.PRODUCT_LIST_ITEM][Platform.MOBILE];
-  }
-  return metaData;
+  if (metaData) return metaData;
+  return ProductImageMetaDataDictionary[ProductImageType.PRODUCT_LIST_ITEM][platform];
 };
 
 export interface ProductImageBaseState {

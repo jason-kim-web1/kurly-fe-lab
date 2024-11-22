@@ -4,7 +4,6 @@ import Image, { ImageProps } from 'next/legacy/image';
 import { SyntheticEvent, useEffect, useState } from 'react';
 
 import { NoMainImageLogo } from '@productCard/assets/img/images';
-import styled from '@emotion/styled';
 import { isNotFunction } from '@productCard/utils/lodash-extends';
 
 const imageDisSelectStyle = css`
@@ -16,14 +15,6 @@ interface Props extends ImageProps {
   disableImageDrag?: boolean;
   fallbackImageSrc?: string;
 }
-
-const StyledImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`;
 
 const NextImage = ({
   disableImageDrag = false,
@@ -54,7 +45,7 @@ const NextImage = ({
   }
 
   return (
-    <StyledImage
+    <Image
       {...otherProps}
       src={internalSrc}
       loader={({ src }) => src}
