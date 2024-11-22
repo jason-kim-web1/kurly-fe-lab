@@ -1,6 +1,6 @@
 import { useProductCardBase } from '../ProductCardBase';
 import { ProductImage } from '@productCard/components/ProductImage';
-import { ProductImageType } from '@productCard/components/ProductImage/constants';
+import { Platform, ProductImageType } from '@productCard/components/ProductImage/constants';
 import { transformSnakeCaseStickerList } from '@productCard/utils/sticker';
 import { SnakeCaseStickerList } from '@productCard/types/sticker';
 
@@ -13,9 +13,10 @@ type Props = {
   soldOutText?: string;
   soldOutTitle?: string;
   stickers: SnakeCaseStickerList;
+  platform: Platform
 };
 
-const ImageImpl = ({ imageUrl, type, isSoldOut, soldOutText, soldOutTitle, stickers }: Props) => {
+const ImageImpl = ({ imageUrl, type, isSoldOut, soldOutText, soldOutTitle, stickers, platform }: Props) => {
   const stickerList = (stickers && stickers.length > 0) ? transformSnakeCaseStickerList(stickers) : [];
 
   return (
@@ -26,6 +27,7 @@ const ImageImpl = ({ imageUrl, type, isSoldOut, soldOutText, soldOutTitle, stick
       soldOutMessage={soldOutText}
       isSoldOut={isSoldOut}
       stickerList={stickerList}
+      platform={platform}
     />
   );
 };
@@ -37,6 +39,7 @@ type ImageProps = {
 const Image = ({ type = ProductImageType.PRODUCT_LIST_ITEM }: ImageProps) => {
   const {
     product: { imageUrl, stickers, isSoldOut, soldOutTitle, soldOutText },
+    platform,
   } = useProductCardBase();
   return (
     <ImageImpl
@@ -46,6 +49,7 @@ const Image = ({ type = ProductImageType.PRODUCT_LIST_ITEM }: ImageProps) => {
       isSoldOut={isSoldOut || false}
       soldOutText={soldOutText}
       soldOutTitle={soldOutTitle}
+      platform={platform}
     />
   );
 };

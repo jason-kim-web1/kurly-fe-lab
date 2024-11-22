@@ -17,6 +17,7 @@ import { ShortCut } from '@productCard/components/ShortCut';
 
 import { ProductContainer } from 'app/styles';
 import { isNotFunction } from '@productCard/utils/lodash-extends';
+import { Platform } from '../ProductImage/constants';
 
 type CardProduct = {
   id: string;
@@ -45,6 +46,7 @@ type CardProduct = {
 
 type BaseContext = {
   product: CardProduct;
+  platform: Platform;
   onClick?: (product: CardProduct) => void;
   onVisibleStateChange?: (product: CardProduct, visible: boolean) => void;
   onClickShortCut?: (product: CardProduct, shortCutType: ShortCutType) => void;

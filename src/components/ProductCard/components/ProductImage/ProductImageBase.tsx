@@ -1,6 +1,5 @@
 import { get, isEmpty } from 'lodash';
 import { createContext, PropsWithChildren, useContext } from 'react';
-import { isDesktop as isPC } from 'react-device-detect';
 
 import type { StickerList as StickerListType } from '@productCard/types/sticker';
 import { Image } from './components/Image';
@@ -36,7 +35,7 @@ export const useProductImageBase = () => {
   return context;
 };
 
-export type ProductImageBaseProps = PropsWithChildren<Omit<ProductImageBaseState, 'platform' | 'imageMetaData'>>;
+export type ProductImageBaseProps = PropsWithChildren<Omit<ProductImageBaseState, 'imageMetaData'>>;
 
 const ProductImageBase = ({
   src,
@@ -46,8 +45,8 @@ const ProductImageBase = ({
   soldOutTitle,
   soldOutMessage,
   children,
+  platform
 }: ProductImageBaseProps) => {
-  const platform = isPC ? Platform.DESKTOP : Platform.MOBILE;
   return (
     <ProductImageBaseContext.Provider
       value={{
