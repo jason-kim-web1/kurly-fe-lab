@@ -1,7 +1,7 @@
 import { get, isEmpty } from 'lodash';
 import { createContext, PropsWithChildren, useContext } from 'react';
 
-import type { StickerList as StickerListType } from '@productCard/types/sticker';
+import type { StickerList as StickerListType } from '../../../types/sticker';
 import { Image } from './components/Image';
 import { SoldOut } from './components/SoldOut';
 import { Sticker } from './components/Sticker';

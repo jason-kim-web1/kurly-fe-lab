@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 
 import { ProductCardBase, ProductCardBaseProps } from './components/ProductCardBase';
-import { ProductImageType } from '@productCard/components/ProductImage/constants';
+import { ProductImageType } from './components/Image/ProductImage/constants';
 
 const flexRowStyle = css`
   display: flex;

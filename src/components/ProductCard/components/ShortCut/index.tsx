@@ -2,13 +2,13 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { forwardRef, MouseEventHandler } from 'react';
 
-import { CustomStylingProps } from '@productCard/types/common';
+import { CustomStylingProps } from '../../types/common';
 import { useProductCardBase } from '../ProductCardBase';
-import { ShortCutType, ShortCutTypeEnum } from '@productCard/types/shortcut';
-import { Buy } from '@productCard/icons/Buy';
-import { Cart } from '@productCard/icons/Cart';
-import COLOR from '@productCard/constants/colorset';
-import { isNotFunction } from '@productCard/utils/lodash-extends';
+import { ShortCutType, ShortCutTypeEnum } from '../../types/shortcut';
+import { Buy } from '../../icons/Buy';
+import { Cart } from '../../icons/Cart';
+import COLOR from '../../constants/colorset';
+import { isNotFunction } from '../../utils/lodash-extends';
 
 type Ref = HTMLButtonElement;
 

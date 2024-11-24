@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { eq, head } from 'lodash';
 
-import type { TextSticker } from '@productCard/types/sticker';
-import { hexToRgba } from '@productCard/utils/color';
+import type { TextSticker } from '../../../../../../types/sticker';
+import { hexToRgba } from '../../../../../../utils/color';
 import { ProductImageType } from '../../../constants';
 import { useProductImageBase } from '../../../ProductImageBase';
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { CollectionSectionProductCard } from '@productCard/index';
+import { CollectionSectionProductCard } from '../components/ProductCard/index';
 import { Container } from './styles';
 import products from './products';
-import { Platform } from '@productCard/components/ProductImage/constants';
+import { Platform } from '../components/ProductCard/components/Image/ProductImage/constants';
 
 export default function Page() {
   return (

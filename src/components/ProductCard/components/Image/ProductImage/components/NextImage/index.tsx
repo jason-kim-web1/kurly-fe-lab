@@ -3,8 +3,8 @@ import { isEmpty } from 'lodash';
 import Image, { ImageProps } from 'next/legacy/image';
 import { SyntheticEvent, useEffect, useState } from 'react';
 
-import { NoMainImageLogo } from '@productCard/assets/img/images';
-import { isNotFunction } from '@productCard/utils/lodash-extends';
+import { NoMainImageLogo } from '../../../../../assets/img/images';
+import { isNotFunction } from '../../../../../utils/lodash-extends';
 
 const imageDisSelectStyle = css`
   user-select: none;

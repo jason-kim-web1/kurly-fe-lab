@@ -1,6 +1,6 @@
 import { SVGAttributes } from 'react';
 
-import COLOR from '@productCard/constants/colorset';
+import COLOR from '../../constants/colorset';
 
 type Props = Pick<SVGAttributes<SVGElement>, 'width' | 'height' | 'stroke'>;
 

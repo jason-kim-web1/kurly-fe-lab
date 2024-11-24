@@ -2,9 +2,9 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-import { CustomStylingProps } from '@productCard/types/common';
+import { CustomStylingProps } from '../../types/common';
 import { useProductCardBase } from '../ProductCardBase';
-import COLOR from '@productCard/constants/colorset';
+import COLOR from '../../constants/colorset';
 
 type Ref = HTMLSpanElement;
 

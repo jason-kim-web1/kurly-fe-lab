@@ -1,8 +1,8 @@
 import { useProductCardBase } from '../ProductCardBase';
-import { ProductImage } from '@productCard/components/ProductImage';
-import { Platform, ProductImageType } from '@productCard/components/ProductImage/constants';
-import { transformSnakeCaseStickerList } from '@productCard/utils/sticker';
-import { SnakeCaseStickerList } from '@productCard/types/sticker';
+import { ProductImage } from '../../components/Image/ProductImage';
+import { Platform, ProductImageType } from '../../components/Image/ProductImage/constants';
+import { transformSnakeCaseStickerList } from '../../utils/sticker';
+import { SnakeCaseStickerList } from '../../types/sticker';
 
 // TODO: Forward Ref 적용
 

@@ -1,5 +1,5 @@
-import { ImageSticker } from '@productCard/types/sticker';
-import { isBottomLeftImageSticker, isBottomRightImageSticker } from '@productCard/utils/sticker';
+import { ImageSticker } from '../../../../../../types/sticker';
+import { isBottomLeftImageSticker, isBottomRightImageSticker } from '../../../../../../utils/sticker';
 import { BottomLeftImageSticker } from './BottomLeftImageSticker';
 import { BottomRightImageSticker } from './BottomRightImageSticker';
 

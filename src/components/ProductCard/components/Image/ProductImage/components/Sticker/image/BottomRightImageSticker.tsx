@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { ImageSticker } from '@productCard/types/sticker';
+import { ImageSticker } from '../../../../../../types/sticker';
 import { AspectRatio } from '../../AspectRatio';
 import NextImage from '../../NextImage';
 import { useProductImageBase } from '../../../ProductImageBase';
@@ -8,7 +8,7 @@ import { useProductImageBase } from '../../../ProductImageBase';
 const rootStyle = css`
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 172px;
 `;
 
@@ -16,10 +16,10 @@ interface Props {
   sticker: ImageSticker;
 }
 
-export const BottomLeftImageSticker = ({ sticker }: Props) => {
+export const BottomRightImageSticker = ({ sticker }: Props) => {
   const { imageMetaData } = useProductImageBase();
-  const { bottomLeftImageSticker } = imageMetaData;
-  const { width } = bottomLeftImageSticker;
+  const { bottomRightImageSticker } = imageMetaData;
+  const { width } = bottomRightImageSticker;
   const { content } = sticker;
   const { imageUrl, opacity } = content;
   return (

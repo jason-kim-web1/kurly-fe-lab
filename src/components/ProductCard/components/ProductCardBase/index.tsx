@@ -1,23 +1,23 @@
 import { createContext, forwardRef, PropsWithChildren, useContext } from 'react';
 
 import { Impression } from './Impression';
-import type { ShortCutType } from '@productCard/types/shortcut';
-import type { SnakeCaseStickerList } from '@productCard/types/sticker';
-import { Box } from '@productCard/components/Box';
-import { Description } from '@productCard/components/Description';
-import { DiscountedPrice } from '@productCard/components/DiscountedPrice';
-import { DiscountRate } from '@productCard/components/DiscountRate';
-import { Image } from '@productCard/components/Image';
-import { Link } from '@productCard/components/Link';
-import { Name } from '@productCard/components/Name';
-import { QuantityChip } from '@productCard/components/QuantityChip';
-import { ReviewCount } from '@productCard/components/ReviewCount';
-import { SalesPrice } from '@productCard/components/SalesPrice';
-import { ShortCut } from '@productCard/components/ShortCut';
+import type { ShortCutType } from '../../types/shortcut';
+import type { SnakeCaseStickerList } from '../../types/sticker';
+import { Box } from '../../components/Box';
+import { Description } from '../../components/Description';
+import { DiscountedPrice } from '../../components/DiscountedPrice';
+import { DiscountRate } from '../../components/DiscountRate';
+import { Image } from '../../components/Image';
+import { Link } from '../../components/Link';
+import { Name } from '../../components/Name';
+import { QuantityChip } from '../../components/QuantityChip';
+import { ReviewCount } from '../../components/ReviewCount';
+import { SalesPrice } from '../../components/SalesPrice';
+import { ShortCut } from '../../components/ShortCut';
 
 import { ProductContainer } from 'app/styles';
-import { isNotFunction } from '@productCard/utils/lodash-extends';
-import { Platform } from '../ProductImage/constants';
+import { isNotFunction } from '../../utils/lodash-extends';
+import { Platform } from '../Image/ProductImage/constants';
 
 type CardProduct = {
   id: string;

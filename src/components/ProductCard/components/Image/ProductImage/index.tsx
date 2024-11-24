@@ -1,4 +1,4 @@
-import { ne } from '@productCard/utils/lodash-extends';
+import { ne } from '../../../utils/lodash-extends';
 import { ProductImageType } from './constants';
 import { ProductImageBase, ProductImageBaseProps } from './ProductImageBase';
 

@@ -2,11 +2,11 @@ import { css } from '@emotion/css';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-import { CustomStylingProps } from '@productCard/types/common';
-import { PRICE_UNIT } from '@productCard/constants/common';
+import { CustomStylingProps } from '../../types/common';
+import { PRICE_UNIT } from '../../constants/common';
 import { useProductCardBase } from '../ProductCardBase';
-import COLOR from '@productCard/constants/colorset';
-import { addComma } from '@productCard/utils/formatter.service';
+import COLOR from '../../constants/colorset';
+import { addComma } from '../../utils/formatter.service';
 
 type Ref = HTMLParagraphElement;
 

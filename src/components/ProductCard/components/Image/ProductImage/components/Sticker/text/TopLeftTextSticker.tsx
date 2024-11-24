@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import { head } from 'lodash';
 
-import type { TextSticker } from '@productCard/types/sticker';
-import { hexToRgba } from '@productCard/utils/color';
+import type { TextSticker } from '../../../../../../types/sticker';
+import { hexToRgba } from '../../../../../../utils/color';
 import { useProductImageBase } from '../../../ProductImageBase';
 
 const rootStyle = css`

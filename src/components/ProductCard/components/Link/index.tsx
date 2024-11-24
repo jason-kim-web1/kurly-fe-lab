@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { forwardRef, MouseEventHandler, PropsWithChildren } from 'react';
 
-import { CustomStylingProps } from '@productCard/types/common';
+import { CustomStylingProps } from '../../types/common';
 import { useProductCardBase } from '../ProductCardBase';
 import NextLink from './NextLink';
-import { isNotFunction } from '@productCard/utils/lodash-extends';
+import { isNotFunction } from '../../utils/lodash-extends';
 
 type Ref = HTMLAnchorElement;
 
