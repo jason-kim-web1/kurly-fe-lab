@@ -14,6 +14,8 @@ const rootStyle = css`
 
 const AspectRatio = styled.div`
   padding-bottom: 100%;
+  position: relative;
+  width: 100%;
 `;
 
 interface Props {

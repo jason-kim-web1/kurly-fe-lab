@@ -51,6 +51,7 @@ const NextImage = ({
       loader={({ src }) => src}
       css={disableImageDrag ? imageDisSelectStyle : {}}
       onErrorCapture={handleErrorCapture}
+      unoptimized
     />
   );
 };
