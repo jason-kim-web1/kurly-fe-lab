@@ -127,7 +127,17 @@ const products: CardProduct[] = [
     discountedPrice: 11100,
     discountRate: 8,
     reviewCount: "",
-    stickers: [],
+    stickers: [
+      {
+        "type": "BOTTOM_RIGHT_IMAGE",
+        "content": {
+          "width": 380,
+          "height": 380,
+          "opacity": 1,
+          "image_url": "https://product-image.kurly.com/sticker/image/8534ead0-490b-4084-8ccf-69d0058fe4bb.png"
+        }
+      }
+    ],
     description: "와인",
     shortCutType: "cart",
     isSoldOut: false,

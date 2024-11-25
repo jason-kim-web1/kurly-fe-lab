@@ -1,15 +1,19 @@
 import { css } from '@emotion/react';
 
 import { ImageSticker } from '../../../../../../types/sticker';
-import { AspectRatio } from '../../AspectRatio';
 import NextImage from '../../NextImage';
 import { useProductImageBase } from '../../../ProductImageBase';
+import styled from '@emotion/styled';
 
 const rootStyle = css`
   position: absolute;
   bottom: 0;
   right: 0;
   width: 172px;
+`;
+
+const AspectRatio = styled.div`
+  padding-bottom: 100%;
 `;
 
 interface Props {
@@ -24,7 +28,7 @@ export const BottomRightImageSticker = ({ sticker }: Props) => {
   const { imageUrl, opacity } = content;
   return (
     <div css={rootStyle} style={{ width, opacity }}>
-      <AspectRatio ratio={1}>
+      <AspectRatio>
         <NextImage src={imageUrl} layout="fill" objectFit="cover" disableImageDrag />
       </AspectRatio>
     </div>
