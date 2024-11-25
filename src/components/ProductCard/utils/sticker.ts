@@ -25,32 +25,32 @@ import {
   SnakeCaseTextSticker,
   Sticker,
   StickerList,
-  StickerTypeEnum,
+  StickerType,
   TextSticker,
 } from '@productCard/types/sticker';
 
 export const isImageSticker = (sticker: Sticker): sticker is ImageSticker =>
-  some([StickerTypeEnum.BOTTOM_LEFT_IMAGE, StickerTypeEnum.BOTTOM_RIGHT_IMAGE], (type) =>
+  some([StickerType.BOTTOM_LEFT_IMAGE, StickerType.BOTTOM_RIGHT_IMAGE], (type) =>
     eq(get(sticker, 'type'), type),
   );
 
 export const isTextSticker = (sticker: Sticker): sticker is TextSticker =>
-  some([StickerTypeEnum.TOP_LEFT_TEXT, StickerTypeEnum.BOTTOM_CENTER_TEXT], (type) => eq(get(sticker, 'type'), type));
+  some([StickerType.TOP_LEFT_TEXT, StickerType.BOTTOM_CENTER_TEXT], (type) => eq(get(sticker, 'type'), type));
 
-const isStickerType = curry((type: StickerTypeEnum, target: unknown) => eq(type, target));
+const isStickerType = curry((type: typeof StickerType[keyof typeof StickerType], target: unknown) => eq(type, target));
 
-export const isTopLeftTextSticker = isStickerType(StickerTypeEnum.TOP_LEFT_TEXT);
-export const isBottomCenterTextSticker = isStickerType(StickerTypeEnum.BOTTOM_CENTER_TEXT);
-export const isBottomLeftImageSticker = isStickerType(StickerTypeEnum.BOTTOM_LEFT_IMAGE);
-export const isBottomRightImageSticker = isStickerType(StickerTypeEnum.BOTTOM_RIGHT_IMAGE);
+export const isTopLeftTextSticker = isStickerType(StickerType.TOP_LEFT_TEXT);
+export const isBottomCenterTextSticker = isStickerType(StickerType.BOTTOM_CENTER_TEXT);
+export const isBottomLeftImageSticker = isStickerType(StickerType.BOTTOM_LEFT_IMAGE);
+export const isBottomRightImageSticker = isStickerType(StickerType.BOTTOM_RIGHT_IMAGE);
 
 const isSnakeCaseImageSticker = (sticker: SnakeCaseSticker): sticker is SnakeCaseImageSticker =>
-  some([StickerTypeEnum.BOTTOM_LEFT_IMAGE, StickerTypeEnum.BOTTOM_RIGHT_IMAGE], (type) =>
+  some([StickerType.BOTTOM_LEFT_IMAGE, StickerType.BOTTOM_RIGHT_IMAGE], (type) =>
     eq(get(sticker, 'type'), type),
   );
 
 const isSnakeCaseTextSticker = (sticker: SnakeCaseSticker): sticker is SnakeCaseTextSticker =>
-  some([StickerTypeEnum.TOP_LEFT_TEXT, StickerTypeEnum.BOTTOM_CENTER_TEXT], (type) => eq(get(sticker, 'type'), type));
+  some([StickerType.TOP_LEFT_TEXT, StickerType.BOTTOM_CENTER_TEXT], (type) => eq(get(sticker, 'type'), type));
 
 const checkValueIsPrimitiveType = (value: unknown) =>
   !!(isString(value) || isNumber(value) || isBoolean(value) || isNull(value) || isUndefined(value) || isEmpty(value));

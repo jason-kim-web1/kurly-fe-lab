@@ -1,9 +1,9 @@
-export enum StickerTypeEnum {
-  TOP_LEFT_TEXT = 'TOP_LEFT_TEXT',
-  BOTTOM_CENTER_TEXT = 'BOTTOM_CENTER_TEXT',
-  BOTTOM_RIGHT_IMAGE = 'BOTTOM_RIGHT_IMAGE',
-  BOTTOM_LEFT_IMAGE = 'BOTTOM_LEFT_IMAGE',
-}
+export const StickerType = {
+  TOP_LEFT_TEXT: 'TOP_LEFT_TEXT',
+  BOTTOM_CENTER_TEXT: 'BOTTOM_CENTER_TEXT',
+  BOTTOM_RIGHT_IMAGE: 'BOTTOM_RIGHT_IMAGE',
+  BOTTOM_LEFT_IMAGE: 'BOTTOM_LEFT_IMAGE',
+} as const;
 
 export type SnakeCaseTextStickerInnerContent = {
   text: string;
@@ -39,12 +39,12 @@ interface BaseSticker {
 }
 
 export interface SnakeCaseTextSticker extends BaseSticker {
-  type: StickerTypeEnum.TOP_LEFT_TEXT | StickerTypeEnum.BOTTOM_CENTER_TEXT;
+  type: typeof StickerType.TOP_LEFT_TEXT | typeof StickerType.BOTTOM_CENTER_TEXT;
   content: SnakeCaseTextStickerContent;
 }
 
 export interface TextSticker extends BaseSticker {
-  type: StickerTypeEnum.TOP_LEFT_TEXT | StickerTypeEnum.BOTTOM_CENTER_TEXT;
+  type: typeof StickerType.TOP_LEFT_TEXT | typeof StickerType.BOTTOM_CENTER_TEXT;
   content: TextStickerContent;
 }
 
@@ -63,12 +63,12 @@ export type ImageStickerContent = {
 };
 
 export interface SnakeCaseImageSticker extends BaseSticker {
-  type: StickerTypeEnum.BOTTOM_LEFT_IMAGE | StickerTypeEnum.BOTTOM_RIGHT_IMAGE;
+  type: typeof StickerType.BOTTOM_LEFT_IMAGE | typeof StickerType.BOTTOM_RIGHT_IMAGE;
   content: SnakeCaseImageStickerContent;
 }
 
 export interface ImageSticker extends BaseSticker {
-  type: StickerTypeEnum.BOTTOM_LEFT_IMAGE | StickerTypeEnum.BOTTOM_RIGHT_IMAGE;
+  type: typeof StickerType.BOTTOM_LEFT_IMAGE | typeof StickerType.BOTTOM_RIGHT_IMAGE;
   content: ImageStickerContent;
 }
 
