@@ -1,6 +1,6 @@
 # Nginx reverse proxy server + HTTPS
 
-## mkcerts로 SSL 인증서 만들기
+## mkcert로 SSL 인증서 만들기
 [Github](https://github.com/FiloSottile/mkcert)  
 
 #### 1. 설치
