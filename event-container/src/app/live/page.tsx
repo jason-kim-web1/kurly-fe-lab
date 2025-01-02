@@ -5,7 +5,6 @@ import Script from 'next/script';
 import useWindowResize from './useWindowResize';
 import useSession from './useSession';
 import useGrip from './useGrip';
-import { getKurlyEventURL } from './util';
 
 const EmbededGrip = ({ isPIP }) => {
   return (
@@ -23,11 +22,6 @@ const EmbededGrip = ({ isPIP }) => {
   );
 };
 
-function getLiveScripts() {
-  const url = getKurlyEventURL();
-  return `${url}grip/grip.min.js`;
-}
-
 export default function Page() {
   const { isPIP } = useWindowResize();
   const { session } = useSession();
@@ -35,7 +29,7 @@ export default function Page() {
 
   return (
     <>
-      <Script type="text/javascript" src={getLiveScripts()} strategy="beforeInteractive" />
+      <Script type="text/javascript" src="/grip/grip.min.js" strategy="beforeInteractive" />
       <EmbededGrip isPIP={isPIP} />
     </>
   );

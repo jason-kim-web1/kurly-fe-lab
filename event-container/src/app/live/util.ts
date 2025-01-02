@@ -1,16 +1,22 @@
 import { GripEvent, GripcloudLoadProps, GripcloudLoadInstance } from './types';
 
-export function isWebView() {
+function isWebView() {
   const texts = window.navigator.userAgent.match(/Kurly\/(\d+\.\d+\.\d+)/);
   return !!texts;
 }
 
-export function getKurlyURL() {
-  return `https://www.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com/`;
+function getKurlyURL() {
+  if (process.env.NEXT_PUBLIC_SERVICE_ENV) {
+    return `https://www.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com/`;
+  }
+  return `https://www.kurly.com/`;
 }
 
-export function getKurlyEventURL() {
-  return `https://event.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com/`;
+function getKurlyEventURL() {
+  if (process.env.NEXT_PUBLIC_SERVICE_ENV) {
+    return `https://event.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com/`;
+  }
+  return `https://event.kurly.com/`;
 }
 
 const objAppURL: Record<string, string> = {
@@ -19,7 +25,7 @@ const objAppURL: Record<string, string> = {
   collections: 'collection?code=',
 };
 
-export function convertURL(url: string, webview: boolean) {
+function convertURL(url: string, webview: boolean) {
   let rtnURL = url;
 
   try {
@@ -59,13 +65,51 @@ export function convertURL(url: string, webview: boolean) {
   return rtnURL;
 }
 
-export function copyURLToClipboard() {
+function onRequiredLogin(isGuest) {
+  return () => {
+    if (isGuest && confirm('로그인이 필요합니다.')) {
+      const returnURL = encodeURIComponent(location.href);
+      const link = isWebView()
+        ? 'kurly://login'
+        : `${getKurlyURL()}member/login?return_url=${returnURL}`;
+      location.href = link;
+    }
+  };
+}
+
+function onClickShare() {
   const tmpTextarea = document.createElement('textarea');
   document.body.appendChild(tmpTextarea);
   tmpTextarea.value = location.href;
   tmpTextarea.select();
   document.execCommand('copy');
   document.body.removeChild(tmpTextarea);
+  alert('URL이 복사 되었습니다.');
+}
+
+const handleClickProductList = (type: 'goods' | 'categories', id: string) => {
+  location.href = isWebView() ? `kurly://product?no=${id}` : `${getKurlyURL()}${type}/${id}`;
+};
+
+function onClickProduct(e: GripEvent) {
+  const detailUrl = e?.value?.data?.detailUrl;
+  const id = e?.value?.data?.productId;
+  if (!id) return;
+
+  if (detailUrl.includes('goods')) {
+    return handleClickProductList('goods', id);
+  }
+  
+  if (detailUrl.includes('categories')) {
+    return handleClickProductList('categories', id);
+  }
+
+  console.error('상세 URL이 없습니다.');
+}
+
+function onClickPinProduct(e: GripEvent) {
+  const productId = e?.value?.data?.productId;
+  return handleClickProductList('goods', productId);
 }
 
 declare const Gripcloud: {
@@ -85,74 +129,39 @@ declare const Gripcloud: {
   destroy: () => void /** 해당 메서드는 동작하지 않음 / 호환성 유지를 위하여 interface만 Grip SDK에 남아있음 - Grip 답변 */;
 };
 
-export function initGrip({ isGuest, memberId }) {
-  const handleClickProductList = (type: 'goods' | 'categories', id: string) => {
-    location.href = isWebView() ? `kurly://product?no=${id}` : `${getKurlyURL()}${type}/${id}`;
-  };
+function onClickCouponBox() {
+  const couponCode = encodeURI(new URLSearchParams(location.search).get('couponCode')?.trim() ?? '');
+  if (!couponCode) return;
+  const urlCouponDown = `${getKurlyURL()}/mypage/coupon?code=${couponCode}&couponNo=${couponCode}`;
+  location.href = convertURL(urlCouponDown, isWebView());
+}
 
+export function initGrip({ isGuest, memberId }) {
   const params = Object.fromEntries(new URLSearchParams(location.search));
   const couponBoxCount = params.couponCode?.length > 0 ? 1 : 0;
   const session = memberId ? { id: memberId, nick: memberId } : null;
-  const gripcloudProps = {
+  const gripcloudProps: GripcloudLoadProps = {
     channelId: params.channelId || '',
     type: 4,
     session,
     custom: {
       couponBoxCount,
       events: {
-        requiredLogin: () => {
-          if (isGuest && confirm('로그인이 필요합니다.')) {
-            const returnURL = encodeURIComponent(location.href);
-            const link = isWebView()
-              ? 'kurly://login'
-              : `${getKurlyURL()}member/login?return_url=${returnURL}`;
-            location.href = link;
-          }
-        },
+        requiredLogin: onRequiredLogin(isGuest),
         clickClose: console.log,
         clickTipImage: console.log,
         clickNoticeLink: console.log,
-        clickShare: () => {
-          copyURLToClipboard();
-          alert('URL이 복사 되었습니다.');
-        },
-        clickProduct: (e: GripEvent) => {
-          const detailUrl = e?.value?.data?.detailUrl;
-          const id = e?.value?.data?.productId;
-          if (!id) return;
-
-          if (detailUrl.includes('goods')) {
-            return handleClickProductList('goods', id);
-          }
-          
-          if (detailUrl.includes('categories')) {
-            return handleClickProductList('categories', id);
-          }
-
-          console.error('상세 URL이 없습니다.');
-          return;
-        },
-        clickPinProduct: (e: GripEvent) => {
-          const productId = e?.value?.data?.productId;
-          return handleClickProductList('goods', productId);
-        },
-        ...(couponBoxCount > 0 && {
-          clickCouponBox: (): void => {
-            const couponCode = encodeURI(new URLSearchParams(location.search).get('couponCode')?.trim() ?? '');
-            if (!couponCode) {
-              return;
-            }
-            const urlCouponDown = location.origin + `/mypage/coupon?code=${couponCode}&couponNo=${couponCode}`;
-
-            location.href = convertURL(urlCouponDown, isWebView());
-          },
-        }),
+        clickShare: onClickShare,
+        clickProduct: onClickProduct,
+        clickPinProduct: onClickPinProduct,
       },
     },
   };
+  if (couponBoxCount === 1) {
+    gripcloudProps.custom.events.clickCouponBox = onClickCouponBox;
+  }
 
   if (Gripcloud) {
-    console.log(gripcloudProps);
     return Gripcloud.load(gripcloudProps);
   }
 

@@ -1,6 +1,6 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 
-const TIMEOUT_SEC = 200;
+const TIMEOUT_SECONDS = 200;
 
 export default function useWindowResize() {
   const timerRef = useRef(null);
@@ -9,9 +9,10 @@ export default function useWindowResize() {
   function onWindowResize() {
     if (timerRef.current) return;
     timerRef.current = window.setTimeout(() => {
-      setIsPIP(window.innerWidth < 320);
+      if (!isPIP && window.innerWidth < 320) setIsPIP(true);
+      else if (isPIP && window.innerWidth >= 320) setIsPIP(false);
       timerRef.current = null;
-    }, TIMEOUT_SEC);
+    }, TIMEOUT_SECONDS);
   }
 
   useLayoutEffect(() => {
