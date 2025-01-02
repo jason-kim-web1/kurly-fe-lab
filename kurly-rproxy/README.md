@@ -15,10 +15,10 @@ brew install mkcert
 파일을 실행하면 다음 작업을 합니다.
 - certs 폴더를 만들고 이동
 - 다음 도메인에 대한 인증, 키 파일 생성(key.pem, cert.pem)
-  - www.local.kurly.com
-  - localhost
-  - 127.0.0.1
-  - ::1 (IPv6의 localhost)
+  - www.local.kurly.com 
+  - www.local.dev.kurly.com
+  - www.local.stg.kurly.com
+  - www.local.perf.kurly.com
 
 ## Nginx reverse proxy 설정(conf.d/default.conf)
 파일의 주석을 참고하세요.
@@ -31,4 +31,4 @@ brew install mkcert
 docker compose up
 ```
 - 3000포트로 구동하는 로컬 서버를 먼저 실행
-- https://www.local.kurly.com 접속, 확인
+- 허용 도메인으로 접속, 확인
