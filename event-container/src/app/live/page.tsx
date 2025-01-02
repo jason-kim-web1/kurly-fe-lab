@@ -2,9 +2,9 @@
 
 import Script from 'next/script';
 
-import useWindowResize from './useWindowResize';
-import useSession from './useSession';
-import useGrip from './useGrip';
+import useWindowResize from './hooks/useWindowResize';
+import useSession from './hooks/useSession';
+import useGrip from './hooks/useGrip';
 
 const EmbededGrip = ({ isPIP }) => {
   return (

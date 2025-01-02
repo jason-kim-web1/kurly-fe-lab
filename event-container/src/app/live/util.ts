@@ -5,6 +5,13 @@ function isWebView() {
   return !!texts;
 }
 
+export function getAuthApiUrl() {
+  if (process.env.NEXT_PUBLIC_SERVICE_ENV) {
+    return `https://auth.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com`;
+  }
+  return `https://auth.kurly.com`;
+}
+
 function getKurlyURL() {
   if (process.env.NEXT_PUBLIC_SERVICE_ENV) {
     return `https://www.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com/`;
