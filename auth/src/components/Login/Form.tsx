@@ -28,6 +28,7 @@ export default function LoginForm() {
                   'accept': 'application/json, text/plain, */*',
                   'content-type': 'application/json',
                 },
+                mode: 'cors',
                 body: JSON.stringify({
                   id,
                   password,

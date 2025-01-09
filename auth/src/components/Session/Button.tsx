@@ -9,6 +9,7 @@ export default function SessionButton() {
           `https://auth.${process.env.NEXT_PUBLIC_SERVICE_ENV}.kurly.com/session`,
           {
             credentials: 'include',
+            mode: 'cors',
           }
         ).then(response => response.json());
 
